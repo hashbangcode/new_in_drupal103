@@ -16,7 +16,7 @@ marp: true
 
 # New Features In<br>Drupal 10.2.0
 
-<!-- Live demos aboud! Wish me luck! -->
+<!-- Live demos abound! Wish me luck! -->
 ---
 
 ## Drupal 10.2.0 Is A Minor Release
@@ -125,7 +125,7 @@ HTML comments are also now correctly preserved in CKEditor.
 # Code Improvements
 
 ---
-
+<!-- _footer: "" -->
 ## Plugins Can Now Use PHP Attributes
 
 This will replace the existing doctrine annotations.
@@ -277,18 +277,13 @@ $result = DeprecationHelper::backwardsCompatibleCall(
  *   ...
  *   handlers = {
  *     "list_builder" = "Drupal\my_awesome_module\MyAwesomeListBuilder",
- *     "route_provider" = {
- *       "html" = "Drupal\Core\Entity\DefaultHtmlRouteProvider",
- *     },
+ *   ...
  *   },
  *   links = {
  *     "collection" = "/admin/structure/my-awesome-entities",
  *   },
  *   admin_permission = "administer my awesome entities",
  *   collection_permission = "access the awesome entity overview",
- * )
- */
-
 ```
 
 ---
@@ -409,5 +404,3 @@ Symfony components havebeen updated to version 6.4.
 ## Resources
 
 [Drupal 10.2.0-rc1](https://www.drupal.org/project/drupal/releases/10.2.0-rc1)
-
----
