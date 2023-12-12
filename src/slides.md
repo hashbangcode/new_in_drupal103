@@ -21,7 +21,7 @@ marp: true
 
 ## Drupal 10.2.0 Is A Minor Release
 
-- This is a minor release and so should not break backwards compatability.
+- This is a minor release and so should not break backwards compatibility.
 - You should still test your sites though!
 
 ---
@@ -192,7 +192,7 @@ services:
 
 ## Filter System Now Outputs HTML5
 
-Previsouly, the filtering system outputed XHTML.
+Previously, the filtering system output XHTML.
 
 Before:
 ```html
@@ -261,7 +261,7 @@ $result = DeprecationHelper::backwardsCompatibleCall(
 ## Schema Strictly Validated In Tests
 
 - Assures that your configuration schema is valid when running tests.
-- May cause some modules to start throwing errors during tests when they previsouly didn't.
+- May cause some modules to start throwing errors during tests when they previously didn't.
 - Effects kernel and functional tests.
 
 ---
@@ -318,7 +318,7 @@ Merged into the help module.
 ## Rebuild Node Permissions
 
 - This action now requires the `administer nodes` permission.
-- Previsouly, only the `access administration pages` option was required.
+- Previously, only the `access administration pages` option was required.
 
 ---
 
@@ -382,14 +382,14 @@ Drupal now supports PHP 8.3 and recommends at least PHP 8.2.
 
 ## Symfony Components
 
-Symfony components havebeen updated to version 6.4.
+Symfony components have been updated to version 6.4.
 
 ---
 
 ## Symfony Mailer
 
-- The Symfony Mailer component has been added to Drupa lcore.
-- Ultimate aim is to replace the existing mail system in a future release.
+- The Symfony Mailer component has been added to Drupal core.
+- The ultimate aim is to replace the existing mail system in a future release.
 
 ---
 
