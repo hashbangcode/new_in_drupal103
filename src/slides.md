@@ -82,7 +82,7 @@ The field storage form is now a sub form of the field configuration form.
 
 ---
 
-## Login And Password Reset Froms
+## Login And Password Reset Forms
 
 - Now include autocomplete attributes. 
 - This gives better hints to browsers as to what can be filled in.
