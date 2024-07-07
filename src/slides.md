@@ -14,12 +14,12 @@ marp: true
 
 ---
 
-# New Features In<br>Drupal 10.2.0
+# New Features In<br>Drupal 10.3.0
 
 <!-- Live demos abound! Wish me luck! -->
 ---
 
-## Drupal 10.2.0 Is A Minor Release
+## Drupal 10.3.0 Is A Minor Release
 
 - This is a minor release and so should not break backwards compatibility.
 - You should still test your sites though!
@@ -31,62 +31,11 @@ marp: true
 
 ---
 
-## Media Revisions
-
-Media entities now have a new tab for viewing, reverting and deleting revisions.
-
-![height:350px](../src/assets/images/media_revisions.png)
-
----
-
-## Taxonomy Add Child Button
-
-Easier to add children to taxonomy terms.
-
-![](../src/assets/images/taxonomy_add_child.png)
-
---- 
-
-## Filename Sanitization
-
-Is now configurable.
-
-![height:400px](../src/assets/images/filename_sanitization.png)
-
-
----
-<!-- _footer: '' -->
-## Block Visibility
-
-Can now use status code
-
-![height:350px](../src/assets/images/block_visibility.png)
-
-<p class="small-text">(Note: The <strong>Block Layout</strong> and <strong>Block Types</strong> area have already been moved under the <strong>Structure</strong> menu).</p>
-
----
-
-## Field Creation
-
-New interface!
-
-![height:400px](../src/assets/images/new_field.png)
-
----
-
 ## Field Storage Form
 
 The field storage form is now a sub form of the field configuration form.
 
 ![height:350px](../src/assets/images/field_storage_edit.png)
-
----
-
-## Login And Password Reset Forms
-
-- Now include autocomplete attributes. 
-- This gives better hints to browsers as to what can be filled in.
-- If, for some reason, you have disabled this then you'll need to check that it still works.
 
 ---
 
@@ -102,77 +51,7 @@ New formatting for tables and table cells when used with full HTML text formats.
 
 ---
 
-## Show Blocks
-
-Reintroduced into CKEditor 5.
-
-![height:350px](../src/assets/images/ckeditor_codeblocks.png)
-
---- 
-
-## HTML Comments
-
-HTML comments are also now correctly preserved in CKEditor.
-
-```html
-<p>Text.</p>
-<!-- Monkey -->
-<p>Text.</p>
-```
-
----
-
 # Code Improvements
-
----
-<!-- _footer: "" -->
-## Plugins Can Now Use PHP Attributes
-
-This will replace the existing doctrine annotations.
-
-Before:
-```php
-/**
- * Provides a block to display the local actions.
- *
- * @Block(
- *   id = "local_actions_block",
- *   admin_label = @Translation("Primary admin actions")
- * )
- */
-class LocalActionsBlock extends BlockBase implements ContainerFactoryPluginInterface {
-```
-
----
-
-After:
-
-```php
-/**
- * Provides a block to display the local actions.
- */
-#[Block(
-  id: "local_actions_block",
-  admin_label: new TranslatableMarkup("Primary admin actions")
-)]
-class LocalActionsBlock extends BlockBase implements ContainerFactoryPluginInterface {
-```
-
-Existing plugins should start migrating over to PHP Attributes.
-
----
-
-## Autoconfiguration Of Event Subscribers
-
-By adding the autoconfigure flag you don't need to add the tag of "event_subscriber".
-
-```yaml
-services:
-  _defaults:
-    autoconfigure: true
-  response_generator_subscriber:
-    class: Drupal\Core\EventSubscriber\ResponseGeneratorSubscriber
-```
 
 ---
 
@@ -403,4 +282,4 @@ Symfony components have been updated to version 6.4.
 
 ## Resources
 
-[Drupal 10.2.0-rc1](https://www.drupal.org/project/drupal/releases/10.2.0-rc1)
+[Drupal 10.3.0](https://www.drupal.org/project/drupal/releases/10.3.0)

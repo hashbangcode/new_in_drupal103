@@ -1,12 +1,12 @@
-# What's new in Drupal 10.2.0
+# What's new in Drupal 10.3.0
 
-A talk looking at the new features and other things in Drupal 10.2.0.
+A talk looking at the new features and other things in Drupal 10.3.0.
 
 ## Install
 
 1 Clone the repo 
 ```bash
-$ git clone git@github.com:hashbangcode/new_in_drupal102.git
+$ git clone git@github.com:hashbangcode/new_in_drupal103.git
 `````
 
 2 Install dependencies
