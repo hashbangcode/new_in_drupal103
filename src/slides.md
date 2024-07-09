@@ -27,256 +27,81 @@ marp: true
 ---
 
 
-# Interface Improvements
+# Navigation
 
 ---
 
-## Field Storage Form
+## Navigation Modules
 
-The field storage form is now a sub form of the field configuration form.
+New experimental navigation modules.
 
-![height:350px](../src/assets/images/field_storage_edit.png)
+![height:350px](../src/assets/images/navigation_modules.png)
 
----
-
-# CKEditor 5 Improvements
+Navigation Top Bar has some bugs currently.
 
 ---
 
-## Tables
+## Navigation Modules
 
-New formatting for tables and table cells when used with full HTML text formats.
+Typical Drupal cusomisation options are available.
 
-![height:350px](../src/assets/images/ckeditor_table.png)
-
----
-
-# Code Improvements
+![height:350px](../src/assets/images/navigation.png)
 
 ---
 
-## Controller Auto-wiring
+## Menu Link Interface
 
-- Controllers no longer require a create() method to inject dependencies. Services are interred from the interfaces in the constructor alone.
-- If this is not possible then the `#[Autowire]` attribute can be used to specify the service.
+Options moved into the right menu.
 
-```php
-  public function __construct(
-    #[Autowire(service: 'cache.default')]
-    protected CacheBackendInterface $cache
- ) {}
- ```
-
---- 
-
-## Filter System Now Outputs HTML5
-
-Previously, the filtering system output XHTML.
-
-Before:
-```html
-<p>
-  Example text
-  <br />
-  <img src="sites/defaut/files/image.jpg" />
-</p>
-```
+![height:350px](../src/assets/images/menu_link_interface.png)
 
 ---
 
-After:
-```html
-<p>
-  Example text
-  <br>
-  <img src="sites/defaut/files/image.jpg">
-</p>
-```
+## Taxonomy Revisions
 
-- In most cases this shouldn't have any effect.
-- Anything looking for very specific XHTML output may need to be updated.
+Now usable.
+
+![height:350px](../src/assets/images/taxonomy_revisions.png)
 
 ---
 
-## Configuration Targets Can Now Be Set
+## Workspace Module
 
-Inform Drupal to use a config item as the `#default_value` without setting it.
-
-```php
-   $form['registration_cancellation']['user_email_verification'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('Require email verification when a visitor creates an account'),
-      '#config_target' => 'user.settings:verify_mail',
-    ];
-```
-
-<!-- 
-- Part of the new config validation system.
-- The form must pass through the parent buildForm() method for this to work.
--->
+Now stable!
 
 ---
 
-## DeprecationHelper
+## Single-Directory Components
 
-New class to aid modules supporting multiple versions of core.
-
-```php
-$result = DeprecationHelper::backwardsCompatibleCall(
-        currentVersion: \Drupal::VERSION,
-        deprecatedVersion: '10.3',
-        currentCallable: fn() => Role::loadMultiple(),
-        deprecatedCallable: fn() => user_roles(),
-);
-```
-
-<!-- 
-- If the current version of Drupal is below 10.3 then run user_roles().
-- If the current version of Drupal is 10.3 or above then run Role::loadMultiple().
--->
+Now stable and moved into core.
 
 ---
 
-## Schema Strictly Validated In Tests
-
-- Assures that your configuration schema is valid when running tests.
-- May cause some modules to start throwing errors during tests when they previously didn't.
-- Effects kernel and functional tests.
-
----
-<!-- _footer: "" -->
-
-## Collection Permission
-
-<p class="small-text">Entities may provide a collection_permission to access the entity overview list.</p>
-
-```php
-/**
- * @ContentEntityType(
- *   ...
- *   handlers = {
- *     "list_builder" = "Drupal\my_awesome_module\MyAwesomeListBuilder",
- *   ...
- *   },
- *   links = {
- *     "collection" = "/admin/structure/my-awesome-entities",
- *   },
- *   admin_permission = "administer my awesome entities",
- *   collection_permission = "access the awesome entity overview",
-```
+# Recipes And Install Profiles
 
 ---
 
+## Recipes
 
-# Experimental Module Changes
+Now in core.
 
----
-
-## Announcements Feed
-
-Promoted to stable.
-
-![height:350px](../src/assets/images/announcements.png)
+Used as part of the [startshot initative](https://github.com/phenaproxima/starshot-prototype).
 
 ---
 
+## Install Profiles
 
-## Experimental Help Topics
+No longer required.
 
-Merged into the help module.
+Can be uninstalled.
 
-
-![height:350px](../src/assets/images/help_topics.png)
-
----
-
-# Permission Changes
+![height:350px](../src/assets/images/uninstall_install_profiles.png)
 
 ---
 
-## Rebuild Node Permissions
+## Access Policy API
 
-- This action now requires the `administer nodes` permission.
-- Previously, only the `access administration pages` option was required.
-
----
-
-# Performance Improvements
-
----
-<!-- _footer: '' -->
-## VariationCache API
-
-- The VariationCache module has been moved into core.
-- Allows you to use cache contexts with any cache backend.
-
-```php
-$cacheable_metadata = CacheableMetadata::createFromObject($response->getCacheableMetadata());
-$this->cache->set(
-  ['response'],
-  $response,
-  $cacheable_metadata->addCacheContexts($this->cacheContexts),
-  (new CacheableMetadata())->setCacheContexts($this->cacheContexts)
-);
-```
-
-- The Group module uses VariationCache.
-
----
-
-## webp Images
-
-- webp image support is now in core.
-- Drupal core shipped image styles will now convert to webp.
-
-![height:350px](../src/assets/images/webp.png)
-
----
-
-## content-length Header
-
-- Drupal now sets a content-length header for most responses.
-- This includes all non-streamed responses (so, anything not using BigPipe).
-- Allows services implementing `DestructableInterface` to run after the page has been delivered to the client.
-- May need to enable output buffering by default in PHP.
-
----
-
-## PHP Fibers
-
-- Big Pipe rendering now makes use of PHP Fibers.
-- Read more: [#! Code : Fibers In PHP 8.1](https://www.hashbangcode.com/article/fibers-php-81)
-
----
-
-# And Finally...
-
----
-
-## PHP Version
-
-Drupal now supports PHP 8.3 and recommends at least PHP 8.2.
-
----
-
-## Symfony Components
-
-Symfony components have been updated to version 6.4.
-
----
-
-## Symfony Mailer
-
-- The Symfony Mailer component has been added to Drupal core.
-- The ultimate aim is to replace the existing mail system in a future release.
-
----
-
-## Upgrading From Drupal 9
-
-- Make sure you update to Drupal 9.4.4 before updating to Drupal 10.
-
-- Remember that Drupal 9 is currently end of life and will receive no security updates.
+Provides a flexible access system that goes beyond roles and permissions.
 
 ---
 
