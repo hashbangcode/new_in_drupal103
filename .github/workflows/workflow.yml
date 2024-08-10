@@ -26,21 +26,29 @@ jobs:
 
       - name: Build Marp slide deck
         run: CHROME_PATH=$(npx -y @puppeteer/browsers@latest install chrome@stable --path $(realpath ./tmp) | awk '{print $2}') npm run build:all
-      
-      - name: Update username config.
-        run: git config --local user.name "github-actions[bot]"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Slides
+          path: |
+            dist/*.pdf
+            dist/*.html
+            dist/*.pptx
+
+      # - name: Update username config.
+      #   run: git config --local user.name "github-actions[bot]"
         
-      - name: Update the user email config. 
-        run: git config --local user.email "github-actions[bot]@users.noreply.github.com"
+      # - name: Update the user email config. 
+      #   run: git config --local user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Stage changed files.
-        run: git add .
+      # - name: Stage changed files.
+      #   run: git add .
 
-      - name: Commit changed files.
-        run: git commit -m "Auto updating presentation files."
+      # - name: Commit changed files.
+      #   run: git commit -m "Auto updating presentation files."
 
-      - name: Update remote origin url.
-        run: git remote set-url origin https://hashbangcode:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+      # - name: Update remote origin url.
+      #   run: git remote set-url origin https://hashbangcode:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
 
-      - name: Push code to main
-        run: git push origin main
+      # - name: Push code to main
+      #   run: git push origin main
