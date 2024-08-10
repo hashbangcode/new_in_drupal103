@@ -42,5 +42,5 @@ jobs:
       - name: Update remote origin url.
         run: git remote set-url origin https://hashbangcode:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
 
-      - name: Push code to master
-        run: git push origin master
+      - name: Push code to main
+        run: git push origin main
